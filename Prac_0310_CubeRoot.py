@@ -1,0 +1,35 @@
+from math import trunc   #  truncation function: find the integer part of float numbers
+from decimal import *
+
+getcontext().prec = 11   #  設定最大的精度範圍至小數點後第 10 位
+n = 5                   #  問題的精度範圍 至小數點後第 5 位
+
+a = float(input("Enter a positive number: "))
+
+## Binary-Search Algorithm - CubeRoot
+if a >= 1: 
+    lower, upper = 0, a
+elif 0 <= a < 1:
+    lower, upper = 0, 1
+elif -1 < a < 0:
+    lower, upper = -1, 0
+else:
+    lower, upper = a, 0
+
+while round(Decimal(str(upper)),n) != round(Decimal(str(lower)),n):
+    avg = Decimal(str(upper)) + Decimal(str(lower))
+    avg = avg / Decimal(str(2.0))    
+    if avg**3 >= a:
+        upper = avg
+    else:
+        lower = avg
+            
+sol = Decimal(str(trunc(upper * 10**n))) / Decimal(str(10**n))      #擷取答案n次方後的整數部分，再除以n次方，得到精確至小數點後n位的答案
+## -----------------------------------------------------------------    
+
+print('\t\t        123456789_123456789_123456789_') 
+print(' Upper of Cube Root =', upper,' (', getcontext().prec-1,'位)')
+print(' Lower of Cube Root =', lower,' (', getcontext().prec-1,'位)')
+
+print(20*'-' + '\n', a, '的立方根，精確至小數點後第 ', n,' 位 :')
+print(' cubeRoot(', a, ') =', sol)
