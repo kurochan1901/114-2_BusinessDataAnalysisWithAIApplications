@@ -1,0 +1,2 @@
+# 114-2_BusinessDataAnalysisWithAIApplications
+AI商業分析資料與應用_課堂練習
