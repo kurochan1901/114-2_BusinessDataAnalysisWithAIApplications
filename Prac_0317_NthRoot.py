@@ -25,8 +25,8 @@ def squareRoot(a):
     return [a, 2, sol]
 
 squareRoot(100)
-squareRoot(1000000000)
+## squareRoot(1000000000)      #超出精度範圍
 squareRoot(0.0001)
 squareRoot(81)
-squareRoot(-9)
+## squareRoot(-9)                 #底數a需>=0
 squareRoot(0)
