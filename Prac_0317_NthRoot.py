@@ -1,8 +1,8 @@
 from math import trunc, log  #  truncation function: find the integer part of float numbers
 from decimal import *
 
-getcontext().prec = 11   #  設定最大的精度範圍至小數點後第 10 位
-n = 5                   #  問題的精度範圍 至小數點後第 5 位
+getcontext().prec = 31   #  設定最大的精度範圍至小數點後第 10 位
+n = 25                   #  問題的精度範圍 至小數點後第 5 位
 
 def squareRoot(a):
     if a < 0:
@@ -24,9 +24,35 @@ def squareRoot(a):
     print(' squareRoot(', a, ') = ', sol)
     return [a, 2, sol]
 
+def CubeRoot(a):
+    if a >= 1: 
+        lower, upper = 0, a
+    else:
+        lower, upper = a, 1
+
+    while round(Decimal(str(upper)),n) != round(Decimal(str(lower)),n):
+        avg = Decimal(str(upper)) + Decimal(str(lower))
+        avg = avg / Decimal(str(2.0))
+        if avg**3 >= a:
+            upper = avg
+        else:
+            lower = avg
+
+    sol = Decimal(str(trunc(upper * 10**n))) / Decimal(str(10**n))
+    print(' CubeRoot(', a, ') = ', sol)
+    return [a, 3, sol]
+
+'''
 squareRoot(100)
 ## squareRoot(1000000000)      #超出精度範圍
 squareRoot(0.0001)
 squareRoot(81)
 ## squareRoot(-9)                 #底數a需>=0
 squareRoot(0)
+'''
+
+CubeRoot(1000)
+CubeRoot(0.001)
+CubeRoot(729)
+CubeRoot(-27)
+CubeRoot(0)
