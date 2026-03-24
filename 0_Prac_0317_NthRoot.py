@@ -42,17 +42,5 @@ def CubeRoot(a):
     print(' CubeRoot(', a, ') = ', sol)
     return [a, 3, sol]
 
-'''
-squareRoot(100)
-## squareRoot(1000000000)      #超出精度範圍
-squareRoot(0.0001)
-squareRoot(81)
-## squareRoot(-9)                 #底數a需>=0
-squareRoot(0)
-'''
-
-CubeRoot(1000)
-CubeRoot(0.001)
-CubeRoot(729)
-CubeRoot(-27)
-CubeRoot(0)
+# def NthRoot(a, n):
+    
