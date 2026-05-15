@@ -3,25 +3,53 @@
 # < TWSE 個股資料下載模組 >：
 #----------------------------------------------------
 
+import json
+from multiprocessing import context
+import ssl
+
+import urllib
+
+
 def twse_crawler(year=2019, mm=5, dd=22, stockNo=2330):
     ''' 例如： year=2019 mm=05 dd=02 stockNo=2330 '''
     import bs4 as bs  #  beautifulsoup 4
     import urllib
     import urllib.request
 
+    import json
+    '''    
+    #----------------------------------------------------
+    # 測試憑證用url
+    #----------------------------------------------------
+    import ssl
+    from multiprocessing import context
+
+    url = 'https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20190522&stockNo=2330'
+
+    context = ssl._create_unverified_context()
+
+    with urllib.request.urlopen(url, context=context) as response:
+        stock = json.load(response)
+
+    print(stock)
+    
+    '''
+    
     #----------------------------------------------------
     # 1. 連線至台灣證交所 (TWSE)，擷取 個股資料
     #----------------------------------------------------
-    url_twse = 'http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date='
+    '''
+    url_twse = 'https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date='
     url_history = url_twse + str(year) + str(mm).zfill(2) + str(dd).zfill(2) + '&stockNo=' + str(stockNo)
     print(url_history)
     webpage_history = urllib.request.urlopen(url_history)
     web_html = bs.BeautifulSoup(webpage_history, 'html.parser')
     print(web_html)
 
-    import json
     stock = json.loads(web_html.text)  #  讀取 JSON 資料
     stock
+
+    
 
     #----------------------------------------------------
     # 2. 轉換 個股資料成 data frame 資料格式
@@ -30,7 +58,9 @@ def twse_crawler(year=2019, mm=5, dd=22, stockNo=2330):
     stock_info
     # stock_info[2]
     # stock_info[3]
+    '''
 
+    '''
     import pandas as pd
     import numpy as np
 
@@ -63,4 +93,4 @@ def twse_crawler(year=2019, mm=5, dd=22, stockNo=2330):
     
 '''
 twse_crawler()
-'''
+
